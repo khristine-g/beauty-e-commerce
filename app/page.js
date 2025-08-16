@@ -1,103 +1,146 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+
+import Category from "./components/Categories";
+import TrendingProducts from "./components/TrendingProducts";
+import Marquee from "./components/Marquee";
+
+import Sales from "./components/Sales";
+import ProductList from "./components/ProductList";
+import Offers from "./components/Offers";
+import Gallery from "./components/Gallery";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const router = useRouter();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  const slides = [
+    {
+      image: "./images/beauty4.jpg",
+      title: "Discover Radiant Skin Today",
+      subtitle: "Luxury skincare products tailored for you",
+    },
+    {
+      image: "./images/beauty2.jpg",
+      title: "Stay Ahead with New Beauty Trends",
+      subtitle: "Innovative products to enhance your natural glow",
+    },
+    {
+      image: "./images/beauty6.jpg",
+      title: "Exclusive Skincare Products Just for You",
+      subtitle: "Experience luxury and care in every drop",
+    },
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <>
+
+     {/* Marquee / Featured Brands */}
+      <section className="bg-white pt-16">
+        <Marquee />
+      </section>
+    <main className="font-sans">
+      {/* Hero Section */}
+      <section className="relative w-full h-[90vh] overflow-hidden bg-neutral-200">
+        {slides.map((slide, index) => (
+          <motion.div
+            key={index}
+            className={`absolute inset-0 flex flex-col md:flex-row items-center justify-center transition-opacity duration-1000 ease-in-out ${
+              index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: index === currentSlide ? 1 : 0 }}
+            transition={{ duration: 1 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            {/* Left side - Image */}
+            <div className="w-full md:w-1/2 h-[60vh] md:h-[90vh]">
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="w-full h-full object-cover rounded-l-3xl shadow-lg"
+              />
+            </div>
+
+            {/* Right side - Content */}
+            <motion.div
+              className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center text-center md:text-left  md:bg-transparent"
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 leading-tight">
+                {slide.title}
+              </h1>
+              <p className="text-lg md:text-xl mb-6 text-gray-600">
+                {slide.subtitle}
+              </p>
+              <button
+                onClick={() => router.push("/all-products")}
+                className="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition-all w-40 mx-auto md:mx-0"
+              >
+                Explore Now
+              </button>
+            </motion.div>
+          </motion.div>
+        ))}
+      </section>
+
+      {/* Categories Section */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-gray-900">
+          Shop by Category
+        </h2>
+        <Category />
+      </section>
+
+      {/* Trending Products Section */}
+      <section className="bg-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-8 text-gray-900">
+            Trending Products
+          </h2>
+          <TrendingProducts />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* Sales / Promotions Section */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <Sales />
+      </section>
+
+    
+
+      {/* New Arrivals Section */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <h2 className="text-3xl md:text-4xl font-extrabold mb-8 text-gray-900">
+          New Arrivals
+        </h2>
+        <ProductList />
+      </section>
+      {/* Gallery Section */}
+      <section className=" mx-auto px-6 py-16">
+       
+        <Gallery />
+      </section>
+       {/* Offers Section */}
+      <section className="mx-auto px-6 py-16">
+        <Offers />
+      </section>
+
+
+     
+    </main>
+    </>
   );
 }
