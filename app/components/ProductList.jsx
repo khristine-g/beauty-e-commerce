@@ -1,37 +1,23 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { products } from "../data/products"; // adjust path
+import { products } from "../data/products";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useCart } from "@/app/context/CartContext"; // ✅ use global cart
 
 export default function ProductList() {
   const router = useRouter();
   const scrollRef = useRef(null);
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const { addToCart } = useCart(); // ✅ global cart context
 
-  // Store products in localStorage so product/[id] page can retrieve them
+  // Store products in localStorage for product/[id] page
   useEffect(() => {
     localStorage.setItem("products", JSON.stringify(products));
   }, []);
 
   const handleProductClick = (product) => {
     router.push(`/product/${product.id}`);
-  };
-
-  const handleAddToCart = (e, product) => {
-    e.stopPropagation(); // Prevent navigating to product page
-    const storedCart = localStorage.getItem("cart");
-    const parsedCart = storedCart ? JSON.parse(storedCart) : [];
-    const existingIndex = parsedCart.findIndex((item) => item.id === product.id);
-
-    if (existingIndex !== -1) {
-      parsedCart[existingIndex].quantity += 1;
-    } else {
-      parsedCart.push({ ...product, quantity: 1 });
-    }
-
-    localStorage.setItem("cart", JSON.stringify(parsedCart));
-    alert(`${product.name} added to cart!`);
   };
 
   const scroll = (direction) => {
@@ -42,19 +28,16 @@ export default function ProductList() {
         ? scrollRef.current.scrollLeft - amount
         : scrollRef.current.scrollLeft + amount;
     scrollRef.current.scrollTo({ left: newPos, behavior: "smooth" });
-    setScrollPosition(newPos);
   };
 
   return (
     <div className="relative max-w-7xl mx-auto px-4 py-12">
-      <h2 className="text-3xl font-bold text-left mb-10">Our Products</h2>
-
       {/* Left Arrow */}
       <button
         onClick={() => scroll("left")}
-        className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-3 z-10 hover:bg-gray-100"
+        className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 z-10 hover:bg-gray-100 transition"
       >
-        ◀
+        <ChevronLeft className="w-5 h-5 text-gray-700" />
       </button>
 
       {/* Scrollable Row */}
@@ -71,7 +54,7 @@ export default function ProductList() {
         {products.map((product) => (
           <motion.div
             key={product.id}
-            className="min-w-[250px] max-w-[250px] bg-white rounded-xl shadow-md overflow-hidden cursor-pointer border border-gray-100 hover:shadow-lg transition-all duration-300"
+            className="relative min-w-[250px] max-w-[250px] bg-white rounded-xl shadow-md overflow-hidden cursor-pointer border border-gray-100 hover:shadow-lg transition-all duration-300 group"
             variants={{
               hidden: { opacity: 0, y: 40 },
               visible: { opacity: 1, y: 0 },
@@ -80,12 +63,29 @@ export default function ProductList() {
             onClick={() => handleProductClick(product)}
           >
             {/* Product Image */}
-            <div className="relative w-full h-64 overflow-hidden rounded-lg ">
+            <div className="relative w-full h-64 overflow-hidden rounded-lg">
               <img
                 src={product.image}
                 alt={product.name}
                 className="object-cover w-full h-full"
               />
+
+              {/* Add to Cart button appears on hover */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation(); // prevent navigation
+                  addToCart({ ...product, quantity: 1 }); // ✅ add to global cart
+                }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                               w-68 px-6 py-3 text-lg font-semibold text-center whitespace-nowrap
+                               bg-gray-950 text-white rounded-lg shadow-lg
+                               opacity-0 group-hover:opacity-100
+                               md:opacity-0 md:group-hover:opacity-100
+                               sm:opacity-100
+                               transition-all duration-300"
+              >
+                Add to Cart
+              </button>
             </div>
 
             {/* Product Info */}
@@ -94,14 +94,6 @@ export default function ProductList() {
               <p className="text-md font-bold text-gray-600 mt-3">
                 KES {product.price.toLocaleString()}
               </p>
-
-              {/* Always-visible Add to Cart Button (black) */}
-              <button
-                className="mt-4 w-full bg-black text-white px-4 py-2 rounded-full font-medium hover:bg-gray-800 transition-colors"
-                onClick={(e) => handleAddToCart(e, product)}
-              >
-                Add to Cart
-              </button>
             </div>
           </motion.div>
         ))}
@@ -110,9 +102,9 @@ export default function ProductList() {
       {/* Right Arrow */}
       <button
         onClick={() => scroll("right")}
-        className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-3 z-10 hover:bg-gray-100"
+        className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 z-10 hover:bg-gray-100 transition"
       >
-        ▶
+        <ChevronRight className="w-5 h-5 text-gray-700" />
       </button>
     </div>
   );

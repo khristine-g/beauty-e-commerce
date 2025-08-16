@@ -87,7 +87,7 @@ export default function Home() {
               </p>
               <button
                 onClick={() => router.push("/all-products")}
-                className="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition-all w-40 mx-auto md:mx-0"
+                className="bg-black hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition-all w-40 mx-auto md:mx-0"
               >
                 Explore Now
               </button>
