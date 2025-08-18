@@ -85,12 +85,18 @@ export default function Home() {
               <p className="text-lg md:text-xl mb-6 text-gray-600">
                 {slide.subtitle}
               </p>
-              <button
-                onClick={() => router.push("/all-products")}
-                className="bg-black hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition-all w-40 mx-auto md:mx-0"
-              >
-                Explore Now
-              </button>
+        <button
+           onClick={() => {
+            const section = document.getElementById("trending");
+           if (section) {
+         section.scrollIntoView({ behavior: "smooth" });
+         }
+          }}
+            className="bg-black hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition-all w-40 mx-auto md:mx-0"
+          >
+           Explore Now
+         </button>
+
             </motion.div>
           </motion.div>
         ))}

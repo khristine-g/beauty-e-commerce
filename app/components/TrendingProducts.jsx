@@ -41,7 +41,7 @@ export default function TrendingProducts() {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-b from-white to-gray-50 relative">
+    <section className="py-16 bg-gradient-to-b from-white to-gray-50 relative" id="trending">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <div className="flex items-center justify-between mb-8">
