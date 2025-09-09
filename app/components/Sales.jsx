@@ -8,7 +8,7 @@ export default function Sales() {
   const router = useRouter();
 
   const calculateTimeLeft = () => {
-    const endTime = new Date("2025-09-11T00:00:00");
+    const endTime = new Date("2025-12-11T00:00:00");
     const now = new Date();
     const difference = endTime - now;
 
