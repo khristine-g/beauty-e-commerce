@@ -3,9 +3,16 @@
 import { offers } from "@/app/data/products2";
 import { motion } from "framer-motion";
 import { useCart } from "@/app/context/CartContext";
+import { useRouter } from "next/navigation";
 
 export default function Offers() {
   const { addToCart } = useCart();
+  const router = useRouter();
+
+  // Navigate to product detail page
+  const handleProductClick = (product) => {
+    router.push(`/product/${product.id}`);
+  };
 
   return (
     <section className="py-16 px-6 bg-white">
@@ -24,7 +31,8 @@ export default function Offers() {
               <motion.div
                 key={product.id}
                 whileHover={{ scale: 1.05 }}
-                className="relative bg-white rounded-2xl shadow-lg overflow-hidden group"
+                className="relative bg-white rounded-2xl shadow-lg overflow-hidden group cursor-pointer"
+                onClick={() => handleProductClick(product)} // ✅ navigate on click
               >
                 <span className="absolute top-3 left-3 bg-red-500 text-white text-sm px-3 py-1 rounded-full shadow-md">
                   -{discount}%
@@ -45,15 +53,19 @@ export default function Offers() {
 
                   <div className="flex items-center justify-center gap-3 mb-3">
                     <span className="text-gray-400 line-through text-sm">
-                      KES{product.oldPrice}
+                      KES {product.oldPrice.toLocaleString()}
                     </span>
                     <span className="text-xl font-bold text-black">
-                      KES {product.price}
+                      KES {product.price.toLocaleString()}
                     </span>
                   </div>
 
+                 
                   <button
-                    onClick={() => addToCart(product)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      addToCart({ ...product, quantity: 1 });
+                    }}
                     className="bg-black text-white px-5 py-2 rounded-full hover:bg-gray-900 transition"
                   >
                     Add to cart

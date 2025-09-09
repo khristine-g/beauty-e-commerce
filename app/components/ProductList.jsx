@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { products } from "../data/products";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useCart } from "@/app/context/CartContext"; // ✅ use global cart
+import { useCart } from "@/app/context/CartContext"; //  use global cart
 
 export default function ProductList() {
   const router = useRouter();
   const scrollRef = useRef(null);
-  const { addToCart } = useCart(); // ✅ global cart context
+  const { addToCart } = useCart(); // global cart context
 
   // Store products in localStorage for product/[id] page
   useEffect(() => {

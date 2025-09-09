@@ -75,7 +75,7 @@ export default function CategoryProducts() {
                   </h3>
                   <div className="flex justify-between items-center mt-4">
                     <span className="text-xl font-bold text-black">
-                      Ksh {product.price}
+                      KES {product.price}
                     </span>
                   </div>
                 </div>
