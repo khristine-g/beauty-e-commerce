@@ -10,8 +10,8 @@ A modern e-commerce platform for beauty products, featuring seamless checkout an
 
 ## Tech Stack
 - Next.js
-- React
-- CSS
+- Tailwind CSS
+
 
 ## Live Demo
 [Visit Live Site](https://beauty-e-commerce-six.vercel.app/)
