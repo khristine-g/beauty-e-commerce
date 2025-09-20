@@ -7,7 +7,7 @@ export default function About() {
   return (
     <div className="bg-white text-gray-900">
       {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-center justify-center bg-gradient-to-b from-pink-100 via-white to-white">
+      <section className="relative h-[70vh] flex items-center justify-center bg-white">
         <div className="text-center px-6">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -18,25 +18,26 @@ export default function About() {
             The Essence of Radiance
           </motion.h1>
           <p className="mt-6 text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Innovative formulas that transform skincare into an art form—bringing
-            out your most luminous and authentic beauty.
-          </p>
+  Carefully crafted formulas that turn everyday beauty into a ritual—enhancing your skin, 
+  hair, and body with a radiant, confident glow that’s authentically yours.
+</p>
+
         </div>
       </section>
 
       {/* Story Section */}
       <section className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-6">
-            Where It All Began
-          </h2>
-          <p className="text-lg text-gray-600 leading-relaxed">
-            Our journey started with a simple vision: skincare crafted with
-            purpose. What began with essentials for the face and body soon grew
-            into sun protection, hair care, and a holistic line of beauty
-            rituals. Each step guided by the desire to harmonize efficacy with
-            self-care.
-          </p>
+         <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-6">
+  Where It All Began
+</h2>
+<p className="text-lg text-gray-600 leading-relaxed">
+  Our journey began with a passion for beauty that goes beyond the surface. 
+  What started with everyday skincare soon expanded into hair care, body care, 
+  and cosmetics designed to inspire confidence. Each product we offer is a 
+  reflection of our mission—to blend quality, care, and style into every beauty ritual.
+</p>
+
         </div>
         <img
           src="./images/beauty2.jpg"
@@ -51,13 +52,10 @@ export default function About() {
       <section className="bg-gray-50 py-20">
         <div className="max-w-4xl mx-auto text-center px-6">
           <h2 className="text-3xl md:text-4xl font-semibold text-gray-800">
-            Since 2010 – For Generations Ahead
+            Since 2018 – For Generations Ahead
           </h2>
           <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-            Our story is one of devotion to balance—where sustainability meets
-            indulgence. We believe beauty should be powerful yet responsible,
-            transformative yet kind. Every product we create is crafted to leave
-            a legacy of both confidence and care for the planet.
+            Our story is one of devotion to self-care—where beauty meets wellness. We believe cosmetics should be more than just products; they should inspire confidence, celebrate individuality, and nurture your skin, hair, and body with kindness. From everyday essentials to indulgent treats, every item we offer is thoughtfully chosen to enhance your natural beauty while caring for your well-being. At our core, we are committed to bringing you high-quality, affordable products that empower you to look good, feel good, and glow from the inside out.
           </p>
         </div>
       </section>
@@ -96,17 +94,19 @@ export default function About() {
       <section className="bg-gray-50 py-20">
         <div className="max-w-5xl mx-auto text-center px-6">
           <h2 className="text-3xl md:text-4xl font-semibold text-gray-800">
-            Our Philosophy
-          </h2>
-          <p className="mt-6 text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            Beauty is more than skin deep. It’s about embracing your glow while
-            doing good for the world. That’s why our motto is{" "}
-            <span className="italic font-semibold">
-              “Glow with Grace, Live with Purpose.”
-            </span>{" "}
-            Every purchase not only enhances your natural beauty but also fuels
-            our commitment to sustainable practices and ethical sourcing.
-          </p>
+  Our Philosophy
+</h2>
+<p className="mt-6 text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+  We believe beauty is more than skin deep—it’s a reflection of self-love, confidence, 
+  and care. Our motto,{" "}
+  <span className="italic font-semibold">
+    “Glow with Grace, Live with Purpose,”
+  </span>{" "}
+  reminds us that every product should not only enhance your natural radiance but also 
+  honor the planet. That’s why we’re committed to sustainable choices, ethical sourcing, 
+  and creating beauty that feels as good as it looks.
+</p>
+
         </div>
       </section>
     </div>

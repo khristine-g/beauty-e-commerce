@@ -47,7 +47,7 @@ export default function Home() {
     <>
 
      {/* Marquee / Featured Brands */}
-      <section className="bg-white pt-16">
+      <section className="bg-white ">
         <Marquee />
       </section>
     <main className="font-sans">

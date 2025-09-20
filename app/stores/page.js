@@ -7,15 +7,15 @@ const stores = [
   {
     id: 1,
     name: "True Beauty - Kahawa Sukari",
-    address: "123 Sukari Ave, Kahawa Sukari, Nairobi",
-    phone: "+254 712 345 678",
+    address: "Willie's arcade, Kahawa Sukari, Nairobi",
+    phone: "+254 720 331 788",
     image: "./images/beauty11.jpg",
   },
   {
     id: 2,
     name: "True Beauty - Kahawa Wendani",
-    address: "45 Wendani Plaza, Kahawa Wendani, Nairobi",
-    phone: "+254 798 654 321",
+    address: "Joshua arcade, Kahawa Wendani, Nairobi",
+    phone: "+254 725 952 696",
     image: "./images/beauty12.jpg",
   },
 ];
@@ -58,7 +58,7 @@ export default function Stores() {
         <div className="p-6 border rounded-2xl shadow-sm hover:shadow-md transition">
           <h4 className="font-semibold text-xl mb-2">Interest-free payments</h4>
           <p className="text-gray-600">
-            Shop now. Pay later. Available for orders over $35.
+            Shop now. Pay later. Available for orders over KES 3000.
           </p>
         </div>
         <div className="p-6 border rounded-2xl shadow-sm hover:shadow-md transition">
