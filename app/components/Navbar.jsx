@@ -34,7 +34,7 @@ export default function Navbar() {
             href="/"
             className="text-2xl font-extrabold tracking-tight text-pink-500"
           >
-            Beauty<span className="text-gray-800">Store</span>
+            True<span className="text-gray-800">Beauty</span>
           </Link>
 
           {/* Desktop Menu */}

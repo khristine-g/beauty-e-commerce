@@ -87,14 +87,14 @@ export default function Footer() {
           <h4 className="text-lg font-semibold text-black mb-3">Contact</h4>
           <ul className="space-y-2 text-sm">
             <li className="flex items-center gap-2">
-              <MdPhone className="text-pink-500" /> (212) 555-1234
+              <MdPhone className="text-pink-500" /> +254 703204138
             </li>
             <li className="flex items-center gap-2">
               <IoMdMail className="text-pink-500" /> info@truebeautyshop.com
             </li>
             <li className="flex items-start gap-2">
               <RiMapPinLine className="text-pink-500 mt-1" /> 
-              1234 Beauty Street, Nairobi, NB 10001
+              Kahawa Sukari | Kahawa Wendani
             </li>
           </ul>
           <Link
