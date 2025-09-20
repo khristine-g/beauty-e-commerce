@@ -33,7 +33,7 @@ export default function Sales() {
   }, []);
 
   const handleViewAll = () => {
-    router.push("/all-products");
+    router.push("/shop");
   };
 
   // Animation Variants
@@ -124,7 +124,7 @@ export default function Sales() {
 
         <motion.button
           onClick={handleViewAll}
-          className="mt-8 px-8 py-3 text-lg font-semibold bg-gray-950 text-white rounded-xl shadow-md hover:bg-pink-700 hover:shadow-lg transition-all"
+          className="mt-8 px-8 py-3 text-lg font-semibold bg-gray-950 text-white rounded-xl shadow-md hover:bg-black hover:shadow-lg transition-all"
           variants={itemVariants}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
