@@ -61,7 +61,7 @@ export default function Offers() {
                   </div>
 
                  
-                  <button
+                  <button 
                     onClick={(e) => {
                       e.stopPropagation();
                       addToCart({ ...product, quantity: 1 });
